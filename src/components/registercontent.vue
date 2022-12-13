@@ -2,7 +2,7 @@
   <div class="content">
     
     
-    <a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol" :rules="rules">
+    <a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol" :rules="rules" ref="ruleForm">
     <a-form-model-item label="您的姓名" prop="name" has-feedback>
       <a-input v-model="form.name" placeholder="请输入您的姓名" >
         <a-icon slot="prefix" type="user" />
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+// import axios from "axios";
 
 export default {
     data() {
@@ -70,7 +71,7 @@ export default {
             rules:{
               name:[{required:true,message:"姓名不能为空！",trigger:'blur'}],
               id_number:[{required:true,message:"身份证不能为空！",trigger:'blur'},{min:18,max:18,message:"请输入正确的身份证号",trigger:'change'}],
-              phone:[{required:true,message:"手机号不能为空！",trigger:'blur'},{len:11,message:"请输入正确的手机号",trigger:'blur'}],
+              phone:[{required:true,message:"手机号不能为空！",trigger:'blur'},{len:11,message:"请输入正确的手机号",trigger:'change'}],
               email:[{required:true,message:"邮箱不能为空！",trigger:'blur'}],
               address:[{required:true,message:"区块链地址不能为空！",trigger:'blur'}],
               password:[{required:true,message:"密码不能为空！",trigger:'blur'}],
@@ -80,17 +81,41 @@ export default {
         };
     },
     methods: {
+      
+        ToIndexPage(){
+          this.$router.push({
+              path:"/"
+          })
+        },
         onSubmit() {
-            if(this.form.password==""){
-                this.$message.error('提交失败，请检查您的表单是否完成')
-            }
-            console.log('submit!', this.form);
+            this.$refs.ruleForm.validate(valid=>{
+              // console.log(1)
+              if(valid){
+                console.log(1)
+                  this.axios.post("接口地址", this.form,{ timeout : 5000 })
+                    .then(res =>{
+                      if(res.data.code == 200){
+                        console.log(res.data);
+                        this.$message.success("注册成功，即将返回登录页面");
+                        setTimeout(function(){this.ToIndexPage()},3000);
+                      }
+                    }).catch(reason => {
+                      this.$message.error("服务器超时")
+                      // console.log(1)
+                    })
+              } else{
+                  this.$message.error('提交失败，请检查您的表单是否完成')
+                }
+            })
         },
         selectemail(txt){
           this.dataSource=!txt ? [] : [txt+'@qq.com',txt+'@163.com',txt+'@126.com',txt+'@gmail.com',txt+'@outlook.com'];
 
-        }
-  },
+        },
+        
+      },
+
+  
   name:"registercontent",
 }
 </script>

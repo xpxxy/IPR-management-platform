@@ -8,12 +8,17 @@
             :style="{ lineHeight: '80px' }"
         >
         <a-row>
-        <a-col :span="1">
-        <a-menu-item disabled="">
-            <div class="title">
-                <img class="logo" src="@/assets/mylogo.png" />&nbsp;<span style="color:#4095e5">知识产权</span>平台
-            </div>
-        </a-menu-item>
+        <a-col :span="8">
+          <a-menu-item disabled="">
+              <div class="title">
+                  <img class="logo" src="@/assets/mylogo.png" />&nbsp;<span style="color:#4095e5">知识产权</span>平台
+              </div>
+          </a-menu-item>
+        </a-col>
+        <a-col :span="8" offset="8">
+          <a-menu-item>
+            <a-button type="primary" @click="$router.push({path:'/'})">返回首页</a-button>
+          </a-menu-item>
         </a-col>
         </a-row>
         </a-menu>
