@@ -23,7 +23,7 @@
           <a-menu-item key="3">
             知识产权分发
           </a-menu-item>
-          <a-menu-item key="4">
+          <a-menu-item key="4" @click="ToUser">
             个人中心
           </a-menu-item>
           
@@ -58,6 +58,11 @@ export default {
           this.$router.push({
             path:"/register",
           })
+      },
+      ToUser(){
+        this.$router.push({
+          path:"/user/sub1/myinfo",
+        })
       }
     },
 }

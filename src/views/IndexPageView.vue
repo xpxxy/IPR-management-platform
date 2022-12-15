@@ -10,7 +10,7 @@
   import indexheader from '@/components/indexheader.vue';
   import login from "../views/login.vue";
   export default {
-    name:'indexpheader',
+    name:'index',
     components: {
       indexheader
     },

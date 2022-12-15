@@ -1,13 +1,13 @@
 <template>
   <div class="content">
     <a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol" :rules="rules" ref="ruleForm">
-    <a-form-model-item label="您的id" prop="login_id" has-feedback>
-      <a-input v-model="form.login_id" placeholder="请输入您的id" >
+    <a-form-model-item label="您的id" prop="phone" has-feedback>
+      <a-input v-model="form.phone" placeholder="请输入您的id" >
         <a-icon slot="prefix" type="user" />
       </a-input>
     </a-form-model-item>
-    <a-form-model-item label="您的密码" prop="login_pw" has-feedback>
-      <a-input-password v-model="form.login_pw" placeholder="请输入您的密码" prop="login_pw">
+    <a-form-model-item label="您的密码" prop="password" has-feedback>
+      <a-input-password v-model="form.password" placeholder="请输入您的密码" prop="password">
         <a-icon slot="prefix" type="safety"  />
       </a-input-password>
     </a-form-model-item>
@@ -33,13 +33,13 @@ export default {
             labelCol: { span: 8 },
             wrapperCol: { span: 10 },
             form: {
-                login_id: '',
-                login_pw:"",
+                phone: "",
+                password:"",
             
             },
             rules:{
-              login_id:[{required:true,message:"id不能为空！",trigger:'blur'}],
-              login_pw:[{required:true,message:"密码不能为空！",trigger:'blur'}],
+              phone:[{required:true,message:"id不能为空！",trigger:'blur'}],
+              password:[{required:true,message:"密码不能为空！",trigger:'blur'}],
             },
             
         }
@@ -50,24 +50,35 @@ export default {
                         path:"/"
                     })
                 },
+                ToUser(){
+                  this.$router.push({
+                        path:"/user",
+                  })  
+                },
                 onSubmit() {
             this.$refs.ruleForm.validate(valid=>{
               // console.log(1)
               if(valid){
-                console.log(1)
-                  this.axios.post("接口地址", this.form,{ timeout : 5000 })
+                // console.log(1)
+                  this.axios.post("http://localhost/userLogin", this.form,{ timeout : 5000 })
                     .then(res =>{
+                      console.log(1)
                       if(res.data.code == 200){
                         console.log(res.data);
-                        this.$message.success("注册成功，即将返回登录页面");
-                        setTimeout(function(){this.ToIndexPage()},3000);
+                        //将登陆返回的用户UID存起来
+                        window.localStorage.setItem("token",res.data.data)
+                        console.log(res.data.data)
+                        this.$message.success("登录成功，即将前往个人中心页面");
+                          this.ToUser()
+                        // setTimeout(function(){this.ToUser()},3000);
+                        
                       }
                     }).catch(reason => {
                       this.$message.error("服务器超时")
                       // console.log(1)
                     })
               } else{
-                  this.$message.error('提交失败，请检查您的表单是否完成')
+                  this.$message.error('登录失败，请检查您的表单是否完成')
                 }
             })
         }

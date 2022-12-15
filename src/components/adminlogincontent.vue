@@ -59,6 +59,7 @@
                       .then(res =>{
                         if(res.data.code == 200){
                           console.log(res.data);
+                          // localStorage.setItem("token","")
                           this.$message.success("登录成功");
                           setTimeout(function(){this.ToIndexPage()},3000);
                         }

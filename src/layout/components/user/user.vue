@@ -31,54 +31,57 @@
             <a-layout-sider width="200" style="background: #fff">
                 <a-menu
                 mode="inline"
-                :default-selected-keys="['/user/myinfo']"
-                :default-open-keys="['sub1']"
+                :default-selected-keys="[subitem]"
+                :default-open-keys="[sub]"
                 style="height: 100%"
                 @click="handleClick"
                 >
                 <a-sub-menu key="sub1">
                   <span slot="title"><a-icon type="user" />个人中心</span>
-                  <a-menu-item key="/user/myinfo">
-                    我的知识产权
+                  <a-menu-item key="/user/sub1/myinfo">
+                    我的信息
+                  </a-menu-item>
+                  <a-menu-item key="/user/sub1/changeinfo">
+                    修改个人信息
                   </a-menu-item>
                 </a-sub-menu>
                 <a-sub-menu key="sub2">
                     <span slot="title"><a-icon type="form" />知识产权登记</span>
-                    <a-menu-item key="/user/submitIPR" >
+                    <a-menu-item key="/user/sub2/submitIPR" >
                   申请登记
                 </a-menu-item>
-                <a-menu-item key="/user/checkSubmitIPR">
+                <a-menu-item key="/user/sub2/checkSubmitIPR">
                   查询登记进度
                 </a-menu-item>
               </a-sub-menu>
               <a-sub-menu key="sub3">
                 <span slot="title"><a-icon type="control" />知识产权使用</span>
-                <a-menu-item key="/user/changeStatus">
+                <a-menu-item key="/user/sub3/changeStatus">
                   变更知识产权状态
                 </a-menu-item>
-                <a-menu-item key="/user/searchIPR">
+                <a-menu-item key="/user/sub3/searchIPR">
                   查询知识产权
                 </a-menu-item>
-                <a-menu-item key="/user/submitUsingIPR">
+                <a-menu-item key="/user/sub3/submitUsingIPR">
                     提交使用申请
                 </a-menu-item>
-                <a-menu-item key="/user/checkSubmitUsingIPR">
+                <a-menu-item key="/user/sub3/checkSubmitUsingIPR">
                     查询申请进度
                 </a-menu-item>
                 
               </a-sub-menu>
               <a-sub-menu key="sub4">
                 <span slot="title"><a-icon type="swap" />知识产权换让</span>
-                <a-menu-item key="/user/transferIPR">
+                <a-menu-item key="/user/sub4/transferIPR">
                     转让知识产权
                 </a-menu-item>
-                <a-menu-item key="/user/receiveIPR">
+                <a-menu-item key="/user/sub4/receiveIPR">
                     知识产权受让
                 </a-menu-item>
               </a-sub-menu>
               <a-sub-menu key="sub5">
                 <span slot="title"><a-icon type="compass" />知识产权追踪</span>
-                <a-menu-item key="/user/traceIPR">
+                <a-menu-item key="/user/sub5/traceIPR">
                   知产产权追踪
                 </a-menu-item>
               </a-sub-menu>
@@ -95,18 +98,42 @@
     </a-layout>
   </template>
 <script>
+
+
 // import titleheader from '@/components/titleheader.vue';
 export default{
     name:"user",
+    data(){
+      return{
+        subitem:'/user/myinfo',
+        sub:"sub1",
+      }
+    },
+    watch:{
+      $route(){
+        this.setCurrentRoute()
+      }
+    },
     methods:{
       //设定点击跳转路由
       handleClick(e) {
         //如果key为路由则跳转
         this.current = e.key;
+        this.subitem=e.key;
+        this.sub=e.keyPath[1];
         if (e.key.indexOf("/") > -1) {
           this.$router.push(e.key).catch(() => { });
         }
       },
+      setCurrentRoute(){
+        this.subitem = this.$route.path;
+        this.sub=this.subitem.split("/")[2]
+        console.log(this.sub)
+        // console.log(this.subitem);
+      }
+    },
+    created(){
+      this.setCurrentRoute()
     }
   
     

@@ -1,7 +1,5 @@
 <template>
   <div class="content">
-    
-    
     <a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol" :rules="rules" ref="ruleForm">
     <a-form-model-item label="您的姓名" prop="name" has-feedback>
       <a-input v-model="form.name" placeholder="请输入您的姓名" >
@@ -45,59 +43,53 @@
       </a-button>
     </a-form-model-item>
   </a-form-model>
+
   </div>
 </template>
 
 <script>
-// import axios from "axios";
-
 export default {
-    data() {
-        return {
-            status:false,
-            labelCol: { span: 8 },
-            wrapperCol: { span: 10 },
-            form: {
-                name: '',
-                password:"",
-                idNumber: "",
-                phone: "",
-                email: "",
-                address: '',
-            
-                
-            },
-            dataSource:[],
-            rules:{
-              name:[{required:true,message:"姓名不能为空！",trigger:'blur'}],
-              idNumber:[{required:true,message:"身份证不能为空！",trigger:'blur'},{min:18,max:18,message:"请输入正确的身份证号",trigger:'change'}],
-              phone:[{required:true,message:"手机号不能为空！",trigger:'blur'},{len:11,message:"请输入正确的手机号",trigger:'change'}],
-              email:[{required:true,message:"邮箱不能为空！",trigger:'blur'}],
-              address:[{required:true,message:"区块链地址不能为空！",trigger:'blur'}],
-              password:[{required:true,message:"密码不能为空！",trigger:'blur'}],
-              
-              
-            },
-        };
-    },
-    methods: {
-      
-        ToIndexPage(){
-          this.$router.push({
-              path:"/"
-          })
+    name:"changeinfo",
+    data(){
+      return{
+        status:false,
+        labelCol: { span: 8 },
+        wrapperCol: { span: 8 },
+        form:{
+          uid: "2",
+          name: "小王",
+          password: "123",
+          idNumber: "789",
+          phone: "111",
+          email: "111@qq.com",
+          address: "0x7027c013e9fdcccd9c4b5cd53b8e5313368105e1",
+          state: null // 用户状态,不需要输出
         },
-        onSubmit() {
+        dataSource: [],
+        rules: {
+          name: [{ required: true, message: "姓名不能为空！", trigger: 'blur' }],
+          idNumber: [{ required: true, message: "身份证不能为空！", trigger: 'blur' }, { min: 18, max: 18, message: "请输入正确的身份证号", trigger: 'change' }],
+          phone: [{ required: true, message: "手机号不能为空！", trigger: 'blur' }, { len: 11, message: "请输入正确的手机号", trigger: 'change' }],
+          email: [{ required: true, message: "邮箱不能为空！", trigger: 'blur' }],
+          address: [{ required: true, message: "区块链地址不能为空！", trigger: 'blur' }],
+          password: [{ required: true, message: "密码不能为空！", trigger: 'blur' }],
+
+
+        },
+
+      }
+    },
+    methods:{
+      onSubmit() {
             this.$refs.ruleForm.validate(valid=>{
               // console.log(1)
               if(valid){
                 console.log(1)
-                  this.axios.post("http://localhost/userRegister", this.form,{ timeout : 5000 })
+                  this.axios.post("http://localhost/updateUserInfo", this.form,{ timeout : 5000 })
                     .then(res =>{
                       if(res.data.code == 200){
                         console.log(res.data);
                         this.$message.success("注册成功，即将返回登录页面");
-                        setTimeout(function(){this.$router.push("/login")},3000);
                       }
                     }).catch(reason => {
                       this.$message.error("服务器超时")
@@ -112,11 +104,14 @@ export default {
           this.dataSource=!txt ? [] : [txt+'@qq.com',txt+'@163.com',txt+'@126.com',txt+'@gmail.com',txt+'@outlook.com'];
 
         },
-        
-      },
-
-  
-  name:"registercontent",
+    },
+    mounted(){
+      this.axios.get("http://localhost/viewUserInfo",{
+        params:{
+          uid:this.form.uid
+        },
+      })
+    }
 }
 </script>
 
