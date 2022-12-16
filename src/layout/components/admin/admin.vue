@@ -37,53 +37,37 @@
                 @click="handleClick"
                 >
                 <a-sub-menu key="sub1">
-                  <span slot="title"><a-icon type="user" />个人中心</span>
-                  <a-menu-item key="/user/sub1/myinfo">
-                    我的信息
+                  <span slot="title"><a-icon type="user" />登记审核中心</span>
+                  <a-menu-item key="/admin/sub1/underVerify">
+                    当前待审核产权
                   </a-menu-item>
-                  <a-menu-item key="/user/sub1/changeinfo">
-                    修改个人信息
+                  <a-menu-item key="/admin/sub1/passVerify">
+                    通过审核信息
+                  </a-menu-item>
+                  <a-menu-item key="/admin/sub1/notVerify">
+                    未通过审核信息
+                  </a-menu-item>
+                  <a-menu-item key="/admin/sub1/allVerify">
+                    所有审核信息
                   </a-menu-item>
                 </a-sub-menu>
                 <a-sub-menu key="sub2">
-                    <span slot="title"><a-icon type="form" />知识产权登记</span>
-                    <a-menu-item key="/user/sub2/submitIPR" >
-                  申请登记
-                </a-menu-item>
-                <a-menu-item key="/user/sub2/checkSubmitIPR">
-                  查询登记进度
-                </a-menu-item>
-              </a-sub-menu>
-              <a-sub-menu key="sub3">
-                <span slot="title"><a-icon type="control" />知识产权使用</span>
-                <a-menu-item key="/user/sub3/changeStatus">
-                  变更知识产权状态
-                </a-menu-item>
-                <a-menu-item key="/user/sub3/searchIPR">
-                  查询知识产权
-                </a-menu-item>
-                <a-menu-item key="/user/sub3/submitUsingIPR">
-                    提交使用申请
-                </a-menu-item>
-                <a-menu-item key="/user/sub3/checkSubmitUsingIPR">
-                    查询申请进度
-                </a-menu-item>
-                
-              </a-sub-menu>
-              <a-sub-menu key="sub4">
-                <span slot="title"><a-icon type="swap" />知识产权换让</span>
-                <a-menu-item key="/user/sub4/transferIPR">
-                    转让知识产权
-                </a-menu-item>
-                <a-menu-item key="/user/sub4/receiveIPR">
-                    知识产权受让
-                </a-menu-item>
-              </a-sub-menu>
-              <a-sub-menu key="sub5">
-                <span slot="title"><a-icon type="compass" />知识产权追踪</span>
-                <a-menu-item key="/user/sub5/traceIPR">
-                  知产产权追踪
-                </a-menu-item>
+                    <span slot="title"><a-icon type="form" />授权中心</span>
+                    <a-menu-item key="/admin/sub2/verifyTransfer" >
+                        待审核转让
+                    </a-menu-item>
+                    <a-menu-item key="/admin/sub2/notTransfer">
+                        未通过转让
+                    </a-menu-item>
+                    <a-menu-item key="/admin/sub2/passTransfer">
+                        通过转让信息
+                    </a-menu-item>
+                    <a-menu-item key="/admin/sub2/allTransfer">
+                        所有转让信息
+                    </a-menu-item>
+                    <a-menu-item key="/admin/sub2/allTransferRecord">
+                        所有转让记录
+                    </a-menu-item>
               </a-sub-menu>
             </a-menu>
           </a-layout-sider>
@@ -102,10 +86,10 @@
 
 // import titleheader from '@/components/titleheader.vue';
 export default{
-    name:"user",
+    name:"admin",
     data(){
       return{
-        subitem:'/user/myinfo',
+        subitem:'/admin/sub1/underVerify',
         sub:"sub1",
       }
     },

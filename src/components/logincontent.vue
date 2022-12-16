@@ -1,8 +1,8 @@
 <template>
   <div class="content">
     <a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol" :rules="rules" ref="ruleForm">
-    <a-form-model-item label="您的id" prop="phone" has-feedback>
-      <a-input v-model="form.phone" placeholder="请输入您的id" >
+    <a-form-model-item label="您的手机号" prop="phone" has-feedback>
+      <a-input v-model="form.phone" placeholder="请输入您的手机号" >
         <a-icon slot="prefix" type="user" />
       </a-input>
     </a-form-model-item>

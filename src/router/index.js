@@ -114,6 +114,51 @@ const routes = [
             },
       
           ]
+        },
+        {
+          path:'/admin',
+          name:'admin',
+          meta:{needLogin:true},
+          redirect:"/admin/sub1/underVerify",
+          component:()=>import("../layout/components/admin/admin.vue"),
+          children:[
+            {
+              path:"sub1/underVerify",
+              name:"underVerify",
+              component:()=>import("../layout/components/admin/content/underVerify.vue"),
+            },
+            {
+              path:"sub1/passVerify",
+              name:"passVerify",
+              component:()=>import("../layout/components/admin/content/passVerify.vue")
+            },
+            {
+              path:"sub1/notVerify",
+              name:"notVerify",
+              component:()=>import("../layout/components/admin/content/notVerify.vue")
+            },
+            {
+              path:"sub2/verifyTransfer",
+              name:"verifyTransfer",
+              component:()=>import("../layout/components/admin/content/verifyTransfer.vue")
+            },
+            {
+              path:"sub2/passTransfer",
+              name:"passTransfer",
+              component:()=>import("../layout/components/admin/content/passTransfer.vue")
+            },
+            {
+              path:"sub2/allTransfer",
+              name:"allTransfer",
+              component:()=>import("../layout/components/admin/content/allTransfer.vue")
+            },
+            {
+              path:"sub2/allTransferRecord",
+              name:"allTransferRecord",
+              component:()=>import("../layout/components/admin/content/allTransferRecord.vue")
+            },
+
+          ],
         }
   //用户界面路由
 ]

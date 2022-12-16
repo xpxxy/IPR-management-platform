@@ -20,8 +20,8 @@
     </a-form-model-item>
     <a-form-model-item label="您的邮箱" prop="email" has-feedback>
       <!-- <a-input v-model="form.email" placeholder="请输入您的邮箱" :data-source="datasource"> -->
-        <a-auto-complete :data-source="dataSource" @search="selectemail">
-          <a-input v-model="form.email" placeholder="请输入您的邮箱"><a-icon slot="prefix" type="global"  /></a-input>
+        <a-auto-complete :data-source="dataSource" @search="selectemail" v-model="form.email">
+          <a-input placeholder="请输入您的邮箱"><a-icon slot="prefix" type="global"  /></a-input>
         </a-auto-complete>
     </a-form-model-item>
     <a-form-model-item label="您的区块链地址" prop="address" has-feedback>
@@ -87,6 +87,9 @@ export default {
               path:"/"
           })
         },
+        ToLogin(){
+          this.$router.push("/login")
+        },
         onSubmit() {
             this.$refs.ruleForm.validate(valid=>{
               // console.log(1)
@@ -94,10 +97,21 @@ export default {
                 console.log(1)
                   this.axios.post("http://localhost/userRegister", this.form,{ timeout : 5000 })
                     .then(res =>{
+                      console.log(this.form)
                       if(res.data.code == 200){
                         console.log(res.data);
                         this.$message.success("注册成功，即将返回登录页面");
-                        setTimeout(function(){this.$router.push("/login")},3000);
+                        this.ToLogin()
+                      }
+                      else if (res.data.code==40001){
+                        this.$message.warn("手机号已被注册")
+                      }
+                      else if(res.data.code==50002){
+                        this.$message.error("	数据库插入失败")
+                      
+                      }
+                      else if(res.data.code==500){
+                        this.$message.error("未知错误")
                       }
                     }).catch(reason => {
                       this.$message.error("服务器超时")

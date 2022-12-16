@@ -2,6 +2,13 @@
     <div class="main">
         <indexheader/>
         <!-- <login/> -->
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        信息流内容 (文字，图片)
     </div>
     
   </template>

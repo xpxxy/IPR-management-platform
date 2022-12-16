@@ -18,8 +18,8 @@
     </a-form-model-item>
     <a-form-model-item label="您的邮箱" prop="email" has-feedback>
       <!-- <a-input v-model="form.email" placeholder="请输入您的邮箱" :data-source="datasource"> -->
-        <a-auto-complete :data-source="dataSource" @search="selectemail">
-          <a-input v-model="form.email" placeholder="请输入您的邮箱"><a-icon slot="prefix" type="global"  /></a-input>
+        <a-auto-complete :data-source="dataSource" @search="selectemail" v-model="form.email" >
+          <a-input  placeholder="请输入您的邮箱"><a-icon slot="prefix" type="global"  /></a-input>
         </a-auto-complete>
     </a-form-model-item>
     <a-form-model-item label="您的区块链地址" prop="address" has-feedback>
@@ -52,6 +52,7 @@ export default {
     name:"changeinfo",
     data(){
       return{
+        value:"",
         status:false,
         labelCol: { span: 8 },
         wrapperCol: { span: 8 },
@@ -73,10 +74,7 @@ export default {
           email: [{ required: true, message: "邮箱不能为空！", trigger: 'blur' }],
           address: [{ required: true, message: "区块链地址不能为空！", trigger: 'blur' }],
           password: [{ required: true, message: "密码不能为空！", trigger: 'blur' }],
-
-
         },
-
       }
     },
     methods:{
@@ -89,7 +87,7 @@ export default {
                     .then(res =>{
                       if(res.data.code == 200){
                         console.log(res.data);
-                        this.$message.success("注册成功，即将返回登录页面");
+                        this.$message.success("修改成功！");
                       }
                     }).catch(reason => {
                       this.$message.error("服务器超时")
@@ -106,10 +104,14 @@ export default {
         },
     },
     mounted(){
+      let token=localStorage.getItem("token")
       this.axios.get("http://localhost/viewUserInfo",{
         params:{
-          uid:this.form.uid
+          uid:token
         },
+      })
+      .then(res=>{
+        this.form=res.data.data
       })
     }
 }

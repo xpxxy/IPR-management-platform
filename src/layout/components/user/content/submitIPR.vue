@@ -21,14 +21,11 @@
       </a-select>
     </a-form-model-item>
     <a-form-model-item label="IP拥有者" prop="owner" has-feedback>
-      <a-input v-model="form.owner" placeholder="作者是谁"/>
+      <a-input v-model="form.owner" placeholder="作者是谁，输入他的UID"/>
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button type="primary" @click="onSubmit">
-        Create
-      </a-button>
-      <a-button style="margin-left: 10px;">
-        Cancel
+        提交登记申请
       </a-button>
     </a-form-model-item>
   </a-form-model>
@@ -76,7 +73,7 @@ export default {
               }
               else if(res.data.code==404){
                 console.log(res.data)
-                this.$messasge.warn("申请人不存在");
+                this.$message.warn("申请人不存在");
               }
               else if(res.data.code==500){
                 console.log(res.data)

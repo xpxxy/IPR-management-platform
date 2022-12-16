@@ -26,14 +26,14 @@ export default {
     data(){
       return{
         form:{
-          uid: 2,
-          name: "小王",
-          password: "123",
-          idNumber: "789",
-          phone: "111",
-          email: "111",
-          address: "0x7027c013e9fdcccd9c4b5cd53b8e5313368105e1",
-          state: null // 用户状态,不需要输出
+          uid: "",
+          name: "",
+          password: "",
+          idNumber: "",
+          phone: "",
+          email: "",
+          address: "",
+          state: "" // 用户状态,不需要输出
         },
 
       }
@@ -42,8 +42,11 @@ export default {
       let token=localStorage.getItem("token")
       this.axios.get("http://localhost/viewUserInfo",{
         params:{
-          uid:this.form.uid
+          uid:token
         },
+      })
+      .then(res=>{
+          this.form=res.data.data
       })
     }
 }
