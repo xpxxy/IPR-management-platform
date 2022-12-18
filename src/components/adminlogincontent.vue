@@ -65,6 +65,9 @@
                           // setTimeout(function(){this.ToIndexPage()},3000);
                           this.$router.push("/admin")
                         }
+                        else if(res.data.code==400){
+                          this.$message.warn("您的账号或密码有误，请检查后输入")
+                        }
                       }).catch(reason => {
                         this.$message.error("服务器超时")
                         // console.log(1)

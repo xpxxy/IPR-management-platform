@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <a-input-search placeholder="input search text" enter-button @search="onSearch" />
+    <a-input-search placeholder="输入知识产权的关键词" enter-button @search="onSearch" />
     <a-modal v-model="visible" title="查询结果" @ok="handleOk" destroyOnClose:true width=800 >
       <a-table :columns="columns" :dataSource="data" bordered />
     </a-modal>

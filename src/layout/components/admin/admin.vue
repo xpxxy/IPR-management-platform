@@ -14,10 +14,9 @@
           </div>
         </a-menu-item>
     </a-col>
-    <a-col :span="8" offset="1"></a-col>
+    <a-col :span="8" offset="6"></a-col>
         <a-menu-item disabled="">
             <a-button-group>
-                <a-button type="primary" icon="rollback" @click="$router.push({path:'/'})">返回首页</a-button>
                 <a-button type="primary" icon="logout" @click="logout">退出登录</a-button>
                 
             </a-button-group>
@@ -65,8 +64,8 @@
                     <a-menu-item key="/admin/sub2/allTransfer">
                         所有转让信息
                     </a-menu-item>
-                    <a-menu-item key="/admin/sub2/allTransferRecord">
-                        所有转让记录
+                    <a-menu-item key="/admin/sub2/allAuth">
+                        所有授权记录
                     </a-menu-item>
               </a-sub-menu>
             </a-menu>

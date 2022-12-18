@@ -1,14 +1,6 @@
 <template>
     <div class="content">
-      <a-table :columns="columns" :dataSource="data" bordered>
-          <!-- <template slot="verify">
-            <a-button-group>
-            <a-button type="primary" @click="passs"> 通过</a-button>
-            <a-button type="danger" @click="notpass">不通过</a-button>
-          </a-button-group>
-        </template> -->
-      </a-table>
-  
+      <a-table :columns="columns" :dataSource="data" bordered :pagination="{pageSize:10}" />
     </div>
   </template>
   
@@ -42,12 +34,6 @@
     {
       title:'公开状态',
       dataIndex:'publicStatus',
-      align:"center",
-  
-    },
-    {
-      title:'申请时间',
-      dataIndex:'applyDatetime',
       align:"center",
   
     },

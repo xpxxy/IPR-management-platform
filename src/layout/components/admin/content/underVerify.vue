@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <a-table :columns="columns" :dataSource="data" bordered :row-selection="rowSelection" :expanded-row-keys.sync="expandedRowKeys"
+    <a-table :columns="columns" :dataSource="data" bordered
     
     >
         <template 

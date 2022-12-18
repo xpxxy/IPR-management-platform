@@ -65,19 +65,20 @@
                 <a-menu-item key="/user/sub3/submitUsingIPR">
                     提交使用申请
                 </a-menu-item>
+                <a-menu-item key="/user/sub3/passUsingIPR">
+                    确认使用申请
+                </a-menu-item>
                 <a-menu-item key="/user/sub3/checkSubmitUsingIPR">
                     查询申请进度
                 </a-menu-item>
                 
               </a-sub-menu>
               <a-sub-menu key="sub4">
-                <span slot="title"><a-icon type="swap" />知识产权换让</span>
+                <span slot="title"><a-icon type="swap" />知识产权转让</span>
                 <a-menu-item key="/user/sub4/transferIPR">
                     转让知识产权
                 </a-menu-item>
-                <a-menu-item key="/user/sub4/receiveIPR">
-                    知识产权受让
-                </a-menu-item>
+                
               </a-sub-menu>
               <a-sub-menu key="sub5">
                 <span slot="title"><a-icon type="compass" />知识产权追踪</span>
@@ -130,6 +131,7 @@ export default{
           this.$router.push(e.key).catch(() => { });
         }
       },
+      
       setCurrentRoute(){
         this.subitem = this.$route.path;
         this.sub=this.subitem.split("/")[2]

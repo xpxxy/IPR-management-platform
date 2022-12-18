@@ -88,6 +88,11 @@ const routes = [
               name:"submitUsingIPR",
               component:()=>import("../layout/components/user/content/submitUsingIPR.vue"),
             },
+            {
+              path:"sub3/passUsingIPR",
+              name:"passUsingIPR",
+              component:()=>import("../layout/components/user/content/passUsingIPR.vue")
+            },
             //查询申请进度
             {
               path:"sub3/checkSubmitUsingIPR",
@@ -100,12 +105,7 @@ const routes = [
               name:"transferIPR",
               component:()=>import("../layout/components/user/content/transferIPR.vue"),
             },
-            //知识产权受让
-            {
-              path:"sub4/receiveIPR",
-              name:"receiveIPR",
-              component:()=>import("../layout/components/user/content/receiveIPR.vue"),
-            },
+            
             //知产产权追踪
             {
               path:"sub5/traceIPR",
@@ -138,9 +138,19 @@ const routes = [
               component:()=>import("../layout/components/admin/content/notVerify.vue")
             },
             {
+              path:"sub1/allVerify",
+              name:"allVerify",
+              component:()=>import("../layout/components/admin/content/allVerify.vue")
+            },
+            {
               path:"sub2/verifyTransfer",
               name:"verifyTransfer",
               component:()=>import("../layout/components/admin/content/verifyTransfer.vue")
+            },
+            {
+              path:"sub2/notTransfer",
+              name:"notTransfer",
+              component:()=>import("../layout/components/admin/content/notTransfer.vue")
             },
             {
               path:"sub2/passTransfer",
@@ -153,9 +163,9 @@ const routes = [
               component:()=>import("../layout/components/admin/content/allTransfer.vue")
             },
             {
-              path:"sub2/allTransferRecord",
-              name:"allTransferRecord",
-              component:()=>import("../layout/components/admin/content/allTransferRecord.vue")
+              path:"sub2/allAuth",
+              name:"allAuth",
+              component:()=>import("../layout/components/admin/content/allAuth.vue")
             },
 
           ],

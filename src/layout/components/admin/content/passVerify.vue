@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-      <a-table :columns="columns" :dataSource="data" bordered>
+      <a-table :columns="columns" :dataSource="data" bordered :pagination="{ pageSize: 9 }" tableLayout="fixed">
           <!-- <template slot="verify">
             <a-button-group>
             <a-button type="primary" @click="passs"> 通过</a-button>
@@ -18,6 +18,7 @@
       title:'产权编号',
       dataIndex:'uuid',
       align:"center",
+      width:'30%'
   
       // scopedSlots:{customRender:'name'}
     },
@@ -31,7 +32,7 @@
       title:'申请时间',
       dataIndex:'applyDatetime',
       align:"center",
-  
+      width:'14%'
     },
     {
       title:'审核状态',
@@ -42,12 +43,6 @@
     {
       title:'公开状态',
       dataIndex:'publicStatus',
-      align:"center",
-  
-    },
-    {
-      title:'申请时间',
-      dataIndex:'applyDatetime',
       align:"center",
   
     },
@@ -67,7 +62,7 @@
   
   ];
   export default {
-      name:"underVerify",
+      name:"passVerify",
       data(){
           return{
               data:[],

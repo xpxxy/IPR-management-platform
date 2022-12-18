@@ -31,7 +31,7 @@ export default {
         return{
             status:false,
             labelCol: { span: 8 },
-            wrapperCol: { span: 10 },
+            wrapperCol: { span: 8 },
             form: {
                 phone: "",
                 password:"",
@@ -83,6 +83,34 @@ export default {
             })
         }
     }
+
+
+/*
+    axios.get("地址"，
+      config:{
+        //请求头
+        headers:{
+          名字：参数
+        }，
+        //如果有请求参数的话加下面
+        params:{
+          名字：参数
+        }
+      }
+      
+    })
+    .then(res=>{
+      if。。。。。。
+    })
+
+
+    axios.post("地址",参数（通常为一个对象，里面有很多键值对）)
+    .then(res=>{
+      if.......
+    })
+
+*/
+
 
     
 }
