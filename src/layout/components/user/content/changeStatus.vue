@@ -27,7 +27,7 @@ const columns = [
   {
     title:'产权编号',
     dataIndex:'uuid',
-    // scopedSlots:{customRender:'name'}
+    width:'10%',
   },
   {
     title:'标题',
@@ -36,6 +36,7 @@ const columns = [
   {
     title:'区块链地址',
     dataIndex:'address',
+    width:'10%',
   },
 
   {

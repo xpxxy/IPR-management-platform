@@ -2,26 +2,25 @@
   <div class="top">
     <a-layout>
       <a-layout-header class="header">
+       <a-row>
         <a-menu
             theme="light"
             mode="horizontal"
             :style="{ lineHeight: '80px' }"
         >
-        <a-row>
+        
         <a-col :span="8">
-          <a-menu-item disabled="">
-              <div class="title">
-                  <img class="logo" src="@/assets/mylogo.png" />&nbsp;<span style="color:#4095e5">知识产权</span>平台
-              </div>
-          </a-menu-item>
+          <div class="title">
+              <img class="logo" src="@/assets/mylogo.png" />&nbsp;<span style="color:#4095e5">芝士产权</span>平台
+          </div>
         </a-col>
-        <a-col :span="8" offset="8">
+        <a-col :span="8" :offset="8">
           <a-menu-item>
-            <a-button type="primary" @click="$router.push({path:'/'})">返回首页</a-button>
+            <a-button type="primary" @click="$router.push('/')">返回首页</a-button>
           </a-menu-item>
         </a-col>
-        </a-row>
         </a-menu>
+      </a-row>
       </a-layout-header>
     </a-layout>
   </div>
@@ -33,9 +32,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 .top{
    height:80px;
+}
+.header{
+  padding: 0px;
+  height: auto;
 }
 .logo{
     width: 80px;

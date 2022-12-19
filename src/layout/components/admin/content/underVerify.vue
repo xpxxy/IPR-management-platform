@@ -81,7 +81,6 @@ export default {
         return{
             data:[],
             columns,
-            loading:true,
             form:{
               aid:"",
               uuid:"",
@@ -99,28 +98,40 @@ export default {
         .then(res=>{
           if(res.data.code==200){
             this.$message.success("审核成功")
+            this.display()
+          }
+          else if(res.data.code==400){
+            this.$message.warn("审核失败")
           }
             
         })
       },
-      notpass(){
+      notpass(uuid){
             
             this.form.aid=localStorage.getItem("token");
-            this.form.uuid=this.data[0].uuid;
+            this.form.uuid=uuid;
             console.log(this.form)
             this.axios.post("http://localhost/notPassApply",this.form)
             .then(res=>{
               if(res.data.code==200){
                 this.$message.success("已打回")
+                this.display()
               }
-              })
+              else if(res.data.code==400){
+                this.$message.warn("审核失败")
+              }
+            })
+
           },
-    },
-    mounted(){
+      display(){
         this.axios.get("http://localhost/queryApplyinfo")
         .then(res=>{
             this.data=res.data.data
         })
+      }
+    },
+    mounted(){
+        this.display()
     }
 }
 </script>

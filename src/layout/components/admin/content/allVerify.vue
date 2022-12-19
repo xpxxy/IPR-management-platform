@@ -46,12 +46,23 @@ const columns = [
     title:'申请时间',
     dataIndex:'applyDatetime',
     align:"center",
-    width:'14%'
+    width:'14%',
+    sorter: (a, b) => {
+            let aTimeString = a.applyDatetime;
+            let bTimeString = b.applyDatetime;
+            aTimeString = aTimeString.replace(/-/g, "/");
+            bTimeString = bTimeString.replace(/-/g, "/");
+            let aTime = new Date(aTimeString).getTime();
+            let bTime = new Date(bTimeString).getTime();
+            return bTime - aTime;
+          },
+    defaultSortOrder: 'ascend',
   },
   {
     title:'审核状态',
     dataIndex:'applyStatus',
     align:"center",
+    
 
   },
   {

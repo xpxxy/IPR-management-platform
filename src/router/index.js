@@ -58,6 +58,11 @@ const routes = [
               name:"changeinfo",
               component:()=>import("../layout/components/user/content/changeinfo.vue")
             },
+            {
+              path:"sub1/myIPR",
+              name:"myIPR",
+              component:()=>import("../layout/components/user/content/myIPR.vue")
+            },
             //申请登记
             {
               path:"sub2/submitIPR",

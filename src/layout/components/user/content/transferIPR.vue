@@ -43,7 +43,8 @@ const columns = [
     title:'产权编号',
     dataIndex:'uuid',
     align:'center',
-    // scopedSlots:{customRender:'name'}
+    width:'10%',
+    
   },
   {
     title:'标题',
@@ -59,7 +60,7 @@ const columns = [
   {
     title:'区块链地址',
     align:'center',
-
+    width:'10%',
     dataIndex:'address',
   },
 
@@ -67,11 +68,13 @@ const columns = [
     title:'申请时间',
     align:'center',
     dataIndex:'applyDatetime',
+    width:'15%',
   },
   {
     align:'center',
     title:'生效时间',
-    dataIndex:'effectiveDatetime'
+    dataIndex:'effectiveDatetime',
+    width:'15%',
   },
   {
     align:'center',
@@ -163,6 +166,17 @@ export default {
               if(res.data.code==200){
                 this.$message.success("您已成功将知识产权转让给对方")
                 this.empty();
+                this.axios.get("http://localhost/showIPInfo", {
+                  params: {
+                    uid: this.token
+                  }
+                })
+                  .then(res => {
+                    if (res.data.code == 200) {
+                      this.data = res.data.data
+                    }
+                  })
+                
               }else if(res.data.code==40001){
                 this.$message.warn("请勿重复提交");
                 this.empty();

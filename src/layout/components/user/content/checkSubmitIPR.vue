@@ -1,7 +1,5 @@
 <template>
   <div class="content">
-    <!-- <a-button type="primary">fff</a-button> -->
-    <!-- <a-input v-model="id" aria-placeholder="insert"></a-input>> -->
     <a-table :columns="columns" :dataSource="data" bordered></a-table>
   </div>
 </template>
@@ -11,7 +9,6 @@ const columns = [
   {
     title:'产权编号',
     dataIndex:'uuid',
-    // scopedSlots:{customRender:'name'}
   },
   {
     title:'标题',
@@ -28,10 +25,6 @@ const columns = [
   {
     title:'公开状态',
     dataIndex:'publicStatus',
-  },
-  {
-    title:'申请时间',
-    dataIndex:'applyDatetime',
   },
   {
     title:'拥有者',

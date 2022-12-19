@@ -1,7 +1,5 @@
 <template>
   <div class="content">
-    
-    
     <a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol" :rules="rules" ref="ruleForm">
     <a-form-model-item label="您的姓名" prop="name" has-feedback>
       <a-input v-model="form.name" placeholder="请输入您的姓名" >
@@ -49,8 +47,6 @@
 </template>
 
 <script>
-// import axios from "axios";
-
 export default {
     data() {
         return {
@@ -134,6 +130,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
+ >>> label {
+    /* color:#6ae4f2; */
+    font-size:larger;
+    font-family: '幼圆';
+}
 </style>

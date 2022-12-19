@@ -1,6 +1,7 @@
 <template>
   <div class="content">
     <a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol" :rules="rules" ref="ruleForm">
+    <a-form-item><div class="logocontrol"><img class="logo" src="@/assets/mylogo.png" /></div></a-form-item>
     <a-form-model-item label="您的手机号" prop="phone" has-feedback>
       <a-input v-model="form.phone" placeholder="请输入您的手机号" >
         <a-icon slot="prefix" type="user" />
@@ -13,11 +14,14 @@
     </a-form-model-item>
    
     
-    <a-form-model-item :wrapper-col="{ span: 17, offset: 4 }">
+    <a-form-model-item :wrapper-col="{ span: 16, offset: 4 }">
       <a-button type="primary" @click="onSubmit" icon="check-circle">
         登录
       </a-button>
      
+    </a-form-model-item>
+    <a-form-model-item :wrapper-col="{span:16,offset:4}">
+      <span @click="$router.push('/register')">没有账号？点击注册！</span>
     </a-form-model-item>
   </a-form-model>
 
@@ -31,7 +35,7 @@ export default {
         return{
             status:false,
             labelCol: { span: 8 },
-            wrapperCol: { span: 8 },
+            wrapperCol: { span: 9 },
             form: {
                 phone: "",
                 password:"",
@@ -73,6 +77,9 @@ export default {
                         // setTimeout(function(){this.ToUser()},3000);
                         
                       }
+                      else if(res.data.code==400){
+                        this.$message.warn("账号或者密码错误")
+                      }
                     }).catch(reason => {
                       this.$message.error("服务器超时")
                       // console.log(1)
@@ -82,40 +89,25 @@ export default {
                 }
             })
         }
-    }
-
-
-/*
-    axios.get("地址"，
-      config:{
-        //请求头
-        headers:{
-          名字：参数
-        }，
-        //如果有请求参数的话加下面
-        params:{
-          名字：参数
-        }
-      }
-      
-    })
-    .then(res=>{
-      if。。。。。。
-    })
-
-
-    axios.post("地址",参数（通常为一个对象，里面有很多键值对）)
-    .then(res=>{
-      if.......
-    })
-
-*/
-
-
-    
+    }    
 }
 </script>
 
-<style>
-
+<style scoped>
+.logocontrol{
+  width: 100%;
+  text-align: center;
+  margin-left: 84%;
+}
+.content{
+  padding-top:40px;
+}
+.logo{
+  height: 80px;
+}
+>>> label {
+    /* color:#6ae4f2; */
+    font-size:larger;
+    font-family: '幼圆';
+}
 </style>

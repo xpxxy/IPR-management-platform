@@ -1,7 +1,8 @@
 <template>
     <div class="content">
       <a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol" :rules="rules" ref="ruleForm">
-      <a-form-model-item label="管理员id" prop="aid" has-feedback>
+        <a-form-item><div class="logocontrol"><img class="logo" src="@/assets/mylogo.png" /></div></a-form-item>
+        <a-form-model-item label="管理员ID" prop="aid" has-feedback>
         <a-input v-model="form.aid" placeholder="请输入您的id" >
           <a-icon slot="prefix" type="user" />
         </a-input>
@@ -83,6 +84,21 @@
   }
   </script>
   
-  <style>
-  
+  <style scoped>
+  .logocontrol{
+  width: 100%;
+  text-align: center;
+  margin-left: 76%;
+}
+.content{
+  padding-top:40px;
+}
+.logo{
+  height: 80px;
+}
+>>> label {
+    /* color:#6ae4f2; */
+    font-size:larger;
+    font-family: '幼圆';
+}
   </style>

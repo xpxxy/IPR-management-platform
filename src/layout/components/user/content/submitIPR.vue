@@ -20,9 +20,6 @@
         </a-select-option>
       </a-select>
     </a-form-model-item>
-    <a-form-model-item label="IP拥有者" prop="owner" has-feedback>
-      <a-input v-model="form.owner" placeholder="作者是谁，输入他的UID"/>
-    </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button type="primary" @click="onSubmit">
         提交登记申请
@@ -53,7 +50,6 @@ export default {
         title:[{required:true,message:"名字不可以为空哦",trigger:"blur"}],
         description:[{required:true,message:"描述不能不写哦",trigger:"blur"}],
         publicStatus:[{required:true,message:"阁下还没选择出版的状态哦",trigger:"blur"}],
-        owner:[{required:true,message:"谁是它的主人呢",trigger:"blur"}],
       }
     };
   },
@@ -61,6 +57,7 @@ export default {
     onSubmit() {
       this.$refs.ruleForm.validate(valid=>{
         if(valid){
+          this.form.owner=localStorage.getItem('token')
           this.axios.post("http://localhost/ipApply",this.form,{timeout:5000})
             .then(res=>{
               if(res.data.code ==200 ){

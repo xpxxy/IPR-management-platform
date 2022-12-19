@@ -4,23 +4,22 @@
       <a-layout-header class="header">
         <a-row>
           <a-col :span="1">
-            <div class="title"><img class="logo" src="@/assets/mylogo.png" /> &nbsp;<span style="color:#4095e5">知识产权</span>平台</div>
+            <div class="title"><img class="logo" src="@/assets/mylogo.png" /> &nbsp;<span style="color:#4095e5">芝士产权</span>平台</div>
           </a-col>
         <a-col :span="10" :offset="10">
         <a-menu
           theme="light"
           mode="horizontal"
           :default-selected-keys="['1']"
-          :style="{ lineHeight: '80px' }"
+          :style="{ lineHeight: '98px' }"
         >
-        
           <a-menu-item key="1">
             首页
           </a-menu-item>
-          <a-menu-item key="2">
+          <a-menu-item key="2" @click="$router.push('/user/sub2/submitIPR')">
             知识产权登记
           </a-menu-item>
-          <a-menu-item key="3">
+          <a-menu-item key="3" @click="$router.push('/user/sub4/transferIPR')">
             知识产权分发
           </a-menu-item>
           <a-menu-item key="4" @click="ToUser">
@@ -68,13 +67,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .header{
   background-color: white;
+  height: 100px;
 }
+
 .title{
-  line-height: 80px;
+  line-height: 98px;
   font-size:25px;
   width: 400px;
 }
